@@ -1,0 +1,432 @@
+[
+  {
+    "version": 1,
+    "event_id": "EV-Q-M101-01",
+    "event_type": "MASTER_QUALIFICATION_REGISTERED",
+    "aggregate_type": "master_qualification",
+    "aggregate_id": "QUAL-M101",
+    "occurred_at": "2026-08-01T09:00:00+08:00",
+    "summary": "周师傅登记为酱酿工序在册传承人，资质三年有效",
+    "recorded_by": {
+      "org_code": "block-cic-center",
+      "role": "center"
+    },
+    "payload": {
+      "master_id": "M-101",
+      "studio_code": "timehonored-studio-12",
+      "process_codes": [
+        "brew-mash"
+      ],
+      "valid_from": "2026-08-01",
+      "valid_until": "2029-07-31"
+    }
+  },
+  {
+    "version": 1,
+    "event_id": "EV-Q-M202-01",
+    "event_type": "MASTER_QUALIFICATION_REGISTERED",
+    "aggregate_type": "master_qualification",
+    "aggregate_id": "QUAL-M202",
+    "occurred_at": "2026-08-02T09:00:00+08:00",
+    "summary": "陈师傅登记为酱酿工序在册传承人（跨工作室接替备用）",
+    "recorded_by": {
+      "org_code": "block-cic-center",
+      "role": "center"
+    },
+    "payload": {
+      "master_id": "M-202",
+      "studio_code": "timehonored-studio-07",
+      "process_codes": [
+        "brew-mash"
+      ],
+      "valid_from": "2026-08-02",
+      "valid_until": "2029-08-01"
+    }
+  },
+  {
+    "version": 1,
+    "event_id": "EV-C201-V3",
+    "event_type": "COURSE_REVISION_PUBLISHED",
+    "aggregate_type": "course_revision",
+    "aggregate_id": "CR-C201-V3",
+    "occurred_at": "2026-08-20T10:00:00+08:00",
+    "summary": "联合培养课程 C-201 发布第 3 版教学大纲",
+    "recorded_by": {
+      "org_code": "skill-school-03",
+      "role": "school"
+    },
+    "payload": {
+      "course_id": "C-201",
+      "course_revision_id": "CR-C201-V3",
+      "revision_version": 3,
+      "published_at": "2026-08-20",
+      "school_code": "skill-school-03",
+      "supersedes": "CR-C201-V2"
+    }
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-ENROLL",
+    "event_type": "ENROLLMENT_ELIGIBILITY_RECORDED",
+    "aggregate_type": "learner",
+    "aggregate_id": "L-2026-001",
+    "occurred_at": "2026-09-01T09:30:00+08:00",
+    "summary": "联合招生资格审核通过",
+    "recorded_by": {
+      "org_code": "block-cic-center",
+      "role": "center"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "learner_name": "林晓",
+      "decision": "eligible",
+      "joint_program_id": "JP-2026-AUTUMN",
+      "decided_at": "2026-09-01",
+      "phone": "138-0000-0000"
+    }
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-APPR-START",
+    "event_type": "APPRENTICESHIP_STARTED",
+    "aggregate_type": "apprenticeship",
+    "aggregate_id": "APPR-L001-A",
+    "occurred_at": "2026-09-05T08:30:00+08:00",
+    "summary": "拜入周师傅门下，在 12 号工作室开始传习",
+    "recorded_by": {
+      "org_code": "timehonored-studio-12",
+      "role": "master"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "apprenticeship_id": "APPR-L001-A",
+      "master_id": "M-101",
+      "studio_code": "timehonored-studio-12",
+      "started_at": "2026-09-05"
+    },
+    "prev_event_id": "EV-L001-ENROLL"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-GRADE-1",
+    "event_type": "SCHOOL_GRADE_RECORDED",
+    "aggregate_type": "school_record",
+    "aggregate_id": "SR-L001-C201",
+    "occurred_at": "2026-09-20T16:00:00+08:00",
+    "summary": "学校记录课程 C-201（第 3 版）课时与结业成绩",
+    "recorded_by": {
+      "org_code": "skill-school-03",
+      "role": "school"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "course_id": "C-201",
+      "course_revision_id": "CR-C201-V3",
+      "revision_version": 3,
+      "credits_hours": 120,
+      "grade": "B+",
+      "result": "completed",
+      "recorded_at": "2026-09-20"
+    },
+    "prev_event_id": "EV-L001-APPR-START"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-PRAC-1",
+    "event_type": "PRACTICE_RECORDED",
+    "aggregate_type": "practice_evidence",
+    "aggregate_id": "PE-L001-0924",
+    "occurred_at": "2026-09-24T15:00:00+08:00",
+    "summary": "现场练习：翻坯手势与力道控制，3 小时",
+    "recorded_by": {
+      "org_code": "timehonored-studio-12",
+      "role": "master"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "apprenticeship_id": "APPR-L001-A",
+      "practiced_at": "2026-09-24T14:50:00+08:00",
+      "process_code": "brew-mash",
+      "step_code": "step-turning",
+      "hours": 3
+    },
+    "prev_event_id": "EV-L001-GRADE-1"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-BATCH-1",
+    "event_type": "WORK_BATCH_SUBMITTED",
+    "aggregate_type": "work_batch",
+    "aggregate_id": "WB-L001-0928",
+    "occurred_at": "2026-09-28T17:30:00+08:00",
+    "summary": "提交第 4 周试岗作品一批（未公开）",
+    "recorded_by": {
+      "org_code": "timehonored-studio-12",
+      "role": "master",
+      "person_id": "M-101"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "apprenticeship_id": "APPR-L001-A",
+      "batch_id": "WB-L001-0928",
+      "submitted_at": "2026-09-28T17:00:00+08:00",
+      "process_code": "brew-mash",
+      "visibility": "private",
+      "title": "秋汛第四翻样坯六件",
+      "photo_refs": [
+        "store://studio-12/batch/WB-L001-0928/01.jpg"
+      ]
+    },
+    "prev_event_id": "EV-L001-PRAC-1"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-CONFIRM-1",
+    "event_type": "CORE_STEP_CONFIRMED",
+    "aggregate_type": "practice_evidence",
+    "aggregate_id": "PE-L001-confirm-select",
+    "occurred_at": "2026-09-29T10:00:00+08:00",
+    "summary": "周师傅确认：选料步骤手上功夫达标",
+    "recorded_by": {
+      "org_code": "timehonored-studio-12",
+      "role": "master",
+      "person_id": "M-101"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "apprenticeship_id": "APPR-L001-A",
+      "process_code": "brew-mash",
+      "step_code": "step-select",
+      "batch_id": "WB-L001-0928",
+      "master_id": "M-101",
+      "qualification_id": "QUAL-M101",
+      "confirmed_at": "2026-09-29T09:55:00+08:00",
+      "result": "pass"
+    },
+    "prev_event_id": "EV-L001-BATCH-1"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-CONFIRM-2",
+    "event_type": "CORE_STEP_CONFIRMED",
+    "aggregate_type": "practice_evidence",
+    "aggregate_id": "PE-L001-confirm-turn",
+    "occurred_at": "2026-09-29T10:10:00+08:00",
+    "summary": "周师傅确认：翻坯步骤手上功夫达标",
+    "recorded_by": {
+      "org_code": "timehonored-studio-12",
+      "role": "master",
+      "person_id": "M-101"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "apprenticeship_id": "APPR-L001-A",
+      "process_code": "brew-mash",
+      "step_code": "step-turning",
+      "batch_id": "WB-L001-0928",
+      "master_id": "M-101",
+      "qualification_id": "QUAL-M101",
+      "confirmed_at": "2026-09-29T10:05:00+08:00",
+      "result": "pass"
+    },
+    "prev_event_id": "EV-L001-CONFIRM-1"
+  },
+  {
+    "version": 2,
+    "event_id": "EV-L001-NARR-1",
+    "event_type": "MASTER_NARRATIVE_RECORDED",
+    "aggregate_type": "apprenticeship",
+    "aggregate_id": "APPR-L001-A",
+    "occurred_at": "2026-09-29T11:00:00+08:00",
+    "summary": "师傅观察性评语：火候判断仍需跟三个批次",
+    "recorded_by": {
+      "org_code": "timehonored-studio-12",
+      "role": "master",
+      "person_id": "M-101"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "apprenticeship_id": "APPR-L001-A",
+      "master_id": "M-101",
+      "observed_at": "2026-09-29T10:40:00+08:00",
+      "aspects": [
+        "手感",
+        "火候判断",
+        "工位整洁"
+      ],
+      "narrative_text": "翻坯力道已稳，选料能辨新陈；火候判断仍需跟足三个批次再议。此为观察，不代评分。",
+      "batch_id": "WB-L001-0928"
+    },
+    "prev_event_id": "EV-L001-CONFIRM-2"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-SAFE-1",
+    "event_type": "SAFETY_EXAM_PASSED",
+    "aggregate_type": "safety_exam",
+    "aggregate_id": "SE-L001-BM",
+    "occurred_at": "2026-09-30T14:00:00+08:00",
+    "summary": "酱酿工序安全考核通过，有效期一年",
+    "recorded_by": {
+      "org_code": "skill-school-03",
+      "role": "school"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "process_code": "brew-mash",
+      "passed_at": "2026-09-30T13:30:00+08:00",
+      "valid_until": "2027-09-29",
+      "examiner_org": "skill-school-03"
+    },
+    "prev_event_id": "EV-L001-NARR-1"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-AUTH-1",
+    "event_type": "PROCESS_AUTHORIZATION_GRANTED",
+    "aggregate_type": "work_authorization",
+    "aggregate_id": "AUTH-L001-BM-1",
+    "occurred_at": "2026-10-02T09:00:00+08:00",
+    "summary": "门店授权：可在酱酿工序独立承担选料与翻坯",
+    "recorded_by": {
+      "org_code": "laozihao-store-88",
+      "role": "store"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "process_code": "brew-mash",
+      "step_codes": [
+        "step-select",
+        "step-turning"
+      ],
+      "scope": "independent",
+      "authorized_at": "2026-10-02T09:00:00+08:00",
+      "valid_until": "2027-09-29",
+      "granted_by_org": "laozihao-store-88",
+      "based_on": {
+        "safety_exam_id": "SE-L001-BM",
+        "core_step_confirmation_ids": [
+          "EV-L001-CONFIRM-1",
+          "EV-L001-CONFIRM-2"
+        ],
+        "apprenticeship_id": "APPR-L001-A"
+      }
+    },
+    "prev_event_id": "EV-L001-SAFE-1"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-TRIAL-1",
+    "event_type": "TRIAL_EMPLOYMENT_VERIFIED",
+    "aggregate_type": "placement",
+    "aggregate_id": "PL-L001-1",
+    "occurred_at": "2026-10-10T18:00:00+08:00",
+    "summary": "门店核验：一周岗位试用合格",
+    "recorded_by": {
+      "org_code": "laozihao-store-88",
+      "role": "store"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "store_code": "laozihao-store-88",
+      "process_code": "brew-mash",
+      "trial_from": "2026-10-03",
+      "trial_to": "2026-10-09",
+      "result": "pass",
+      "authorization_id": "EV-L001-AUTH-1"
+    },
+    "prev_event_id": "EV-L001-AUTH-1"
+  },
+  {
+    "version": 2,
+    "event_id": "EV-L001-PLACE-1",
+    "event_type": "PLACEMENT_VERIFIED",
+    "aggregate_type": "placement",
+    "aggregate_id": "PL-L001-1",
+    "occurred_at": "2026-10-12T10:00:00+08:00",
+    "summary": "就业去向：与 88 号门店签订正式用工",
+    "recorded_by": {
+      "org_code": "laozihao-store-88",
+      "role": "store"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "store_code": "laozihao-store-88",
+      "position_process_codes": [
+        "brew-mash"
+      ],
+      "employed_at": "2026-10-12",
+      "employment_type": "full_time",
+      "trial_verification_id": "EV-L001-TRIAL-1"
+    },
+    "prev_event_id": "EV-L001-TRIAL-1"
+  },
+  {
+    "version": 3,
+    "event_id": "EV-L001-APPR-END-A",
+    "event_type": "APPRENTICESHIP_ENDED",
+    "aggregate_type": "apprenticeship",
+    "aggregate_id": "APPR-L001-A",
+    "occurred_at": "2026-10-15T17:00:00+08:00",
+    "summary": "周师傅退休，原师承关系终止；既有练习、确认、评语保留",
+    "recorded_by": {
+      "org_code": "block-cic-center",
+      "role": "center"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "apprenticeship_id": "APPR-L001-A",
+      "master_id": "M-101",
+      "ended_at": "2026-10-15",
+      "reason": "master_retired"
+    },
+    "prev_event_id": "EV-L001-PLACE-1"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-APPR-START-B",
+    "event_type": "APPRENTICESHIP_STARTED",
+    "aggregate_type": "apprenticeship",
+    "aggregate_id": "APPR-L001-B",
+    "occurred_at": "2026-10-16T08:30:00+08:00",
+    "summary": "转由 7 号工作室陈师傅接续带教（新关系，旧履历不重写）",
+    "recorded_by": {
+      "org_code": "timehonored-studio-07",
+      "role": "master"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "apprenticeship_id": "APPR-L001-B",
+      "master_id": "M-202",
+      "studio_code": "timehonored-studio-07",
+      "started_at": "2026-10-16",
+      "supersedes_apprenticeship_id": "APPR-L001-A"
+    },
+    "prev_event_id": "EV-L001-APPR-END-A"
+  },
+  {
+    "version": 1,
+    "event_id": "EV-L001-ACCESS-1",
+    "event_type": "ACCESS_GRANTED",
+    "aggregate_type": "access_grant",
+    "aggregate_id": "AG-L001-STORE88",
+    "occurred_at": "2026-10-16T12:00:00+08:00",
+    "summary": "学员授权 88 号门店招聘负责人查看未公开作品，90 天有效",
+    "recorded_by": {
+      "org_code": "learner-self",
+      "role": "learner",
+      "person_id": "L-2026-001"
+    },
+    "payload": {
+      "learner_id": "L-2026-001",
+      "grantee_person_id": "R-STORE88-07",
+      "grantee_org": "laozihao-store-88",
+      "scopes": [
+        "unpublished_works"
+      ],
+      "granted_at": "2026-10-16T12:00:00+08:00",
+      "valid_until": "2027-01-14"
+    },
+    "prev_event_id": "EV-L001-APPR-START-B"
+  }
+]

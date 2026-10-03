@@ -5,5 +5,17 @@
   "aggregate_id": "heritage_apprentice_pathway-001",
   "occurred_at": "2026-09-20T16:00:00+08:00",
   "version": 1,
-  "summary": "老字号技艺传习履历联调样例"
+  "summary": "老字号技艺传习履历联调样例",
+  "recorded_by": {
+    "org_code": "timehonored-studio-12",
+    "person_id": "M-101",
+    "role": "master"
+  },
+  "payload": {
+    "learner_id": "L-2026-001",
+    "apprenticeship_id": "heritage_apprentice_pathway-001",
+    "master_id": "M-101",
+    "studio_code": "timehonored-studio-12",
+    "started_at": "2026-09-20"
+  }
 }

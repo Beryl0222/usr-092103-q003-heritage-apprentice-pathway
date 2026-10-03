@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "老字号技艺传习履历领域事件",
+  "description": "跨机构（工作室、技能学校、门店、街区文化产业服务中心）交换传习记录的起点。信封是全部事件类型的公共部分；业务数据统一放在 payload 中。观察性评语不伪装成分数，核心工序步骤须在册传承人确认，学校成绩与门店工序授权互相独立。",
   "type": "object",
   "required": [
     "event_id",
@@ -9,30 +10,57 @@
     "aggregate_id",
     "occurred_at",
     "version",
-    "summary"
+    "summary",
+    "recorded_by"
   ],
   "properties": {
     "event_id": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "全局唯一事件 ID。同一学员的传习流通过 prev_event_id 串接成可核验的哈希链。"
+    },
+    "prev_event_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "同一学员传习流中的前一个事件 ID；首个事件省略。用于检测中途插入、删除或篡改。"
     },
     "event_type": {
       "type": "string",
       "enum": [
+        "ENROLLMENT_ELIGIBILITY_RECORDED",
         "APPRENTICESHIP_STARTED",
+        "APPRENTICESHIP_ENDED",
+        "MASTER_QUALIFICATION_REGISTERED",
+        "COURSE_REVISION_PUBLISHED",
+        "SCHOOL_GRADE_RECORDED",
         "PRACTICE_RECORDED",
-        "ASSESSMENT_SIGNED",
-        "AUTHORIZATION_GRANTED",
-        "PLACEMENT_VERIFIED"
+        "WORK_BATCH_SUBMITTED",
+        "CORE_STEP_CONFIRMED",
+        "MASTER_NARRATIVE_RECORDED",
+        "SAFETY_EXAM_PASSED",
+        "PROCESS_AUTHORIZATION_GRANTED",
+        "PROCESS_AUTHORIZATION_REVOKED",
+        "TRIAL_EMPLOYMENT_VERIFIED",
+        "PLACEMENT_VERIFIED",
+        "STAGE_CERTIFICATE_ISSUED",
+        "ACCESS_GRANTED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
+        "learner",
         "apprenticeship",
+        "master_qualification",
         "course_revision",
+        "school_record",
+        "safety_exam",
         "practice_evidence",
-        "work_authorization"
+        "work_batch",
+        "work_authorization",
+        "placement",
+        "stage_certificate",
+        "access_grant"
       ]
     },
     "aggregate_id": {
@@ -45,12 +73,45 @@
     },
     "version": {
       "type": "integer",
-      "minimum": 1
+      "minimum": 1,
+      "description": "同一聚合内的事件版本号，从 1 起严格递增。"
     },
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "recorded_by": {
+      "$ref": "#/$defs/partyRef",
+      "description": "记录的出具方（工作室/学校/门店/传承人/中心）。观察性评语是传承人语义，成绩是学校语义，二者不可互换。"
+    },
+    "payload": {
+      "type": "object",
+      "description": "业务数据，随 event_type 不同而不同；各类型的字段语义与跨事件约束见 README，由流校验器强制执行。"
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[0-9a-f]+$",
+      "description": "出具方对事件摘要的 Ed25519 签名（十六进制）。签名不参与事件摘要本身；缺省表示未附单条签名。"
     }
   },
-  "additionalProperties": true
+  "additionalProperties": false,
+  "$defs": {
+    "partyRef": {
+      "type": "object",
+      "required": ["org_code", "role"],
+      "properties": {
+        "org_code": { "type": "string", "minLength": 1 },
+        "person_id": { "type": "string", "minLength": 1 },
+        "role": {
+          "type": "string",
+          "enum": ["master", "school", "store", "center", "learner"]
+        },
+        "signature_algorithm": {
+          "type": "string",
+          "enum": ["Ed25519", "none"]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
 }
