@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "description": "传习履历基础名录：人员、传承人资格凭证、工序与核心步骤、机构。规则校验（资格、工序、授权范围）引用本名录。",
+  "people": [
+    {
+      "person_id": "p:linxia",
+      "name": "林夏",
+      "role": "apprentice",
+      "contact": {
+        "phone": "138-0000-2026",
+        "address": "街区青年公寓 3 号 201"
+      }
+    },
+    {
+      "person_id": "m:chenbaoshan",
+      "name": "陈宝善",
+      "role": "inheritor",
+      "studio_id": "studio:duyun"
+    },
+    {
+      "person_id": "m:zhaoli",
+      "name": "赵丽",
+      "role": "mentor",
+      "studio_id": "studio:duyun",
+      "note": "在工作室带练的师傅，不具备核心步骤传承人确认资格"
+    },
+    {
+      "person_id": "m:sundehai",
+      "name": "孙德海",
+      "role": "inheritor",
+      "studio_id": "studio:dehe"
+    },
+    {
+      "person_id": "official:fang",
+      "name": "街区文化产业服务中心核验岗",
+      "role": "district_officer"
+    }
+  ],
+  "credentials": [
+    {
+      "credential_id": "cred:chen_001",
+      "person_id": "m:chenbaoshan",
+      "kind": "heritage_inheritor",
+      "crafts": ["metal_repousse"],
+      "valid_from": "2024-01-01",
+      "valid_until": "2028-12-31",
+      "status": "active"
+    },
+    {
+      "credential_id": "cred:sun_001",
+      "person_id": "m:sundehai",
+      "kind": "heritage_inheritor",
+      "crafts": ["pickle_packing"],
+      "valid_from": "2023-06-01",
+      "valid_until": "2027-05-31",
+      "status": "active"
+    }
+  ],
+  "crafts": [
+    {
+      "craft_id": "metal_repousse",
+      "name": "金属雕錾技艺",
+      "steps": [
+        { "step_id": "mr:anneal", "name": "退火", "is_core": false },
+        { "step_id": "mr:hammer", "name": "锤揲成型", "is_core": false },
+        { "step_id": "mr:chase", "name": "雕錾走线", "is_core": true },
+        { "step_id": "mr:polish", "name": "压光收尾", "is_core": false }
+      ]
+    },
+    {
+      "craft_id": "pickle_packing",
+      "name": "酱菜装坛技艺",
+      "steps": [
+        { "step_id": "pp:select", "name": "选料晾晒", "is_core": false },
+        { "step_id": "pp:brine", "name": "卤水配制", "is_core": true },
+        { "step_id": "pp:pack", "name": "分层装坛", "is_core": false },
+        { "step_id": "pp:seal", "name": "封坛养味", "is_core": true }
+      ]
+    }
+  ],
+  "organizations": [
+    { "org_id": "studio:duyun", "name": "朵云金属作大师工作室", "kind": "studio" },
+    { "org_id": "studio:dehe", "name": "德和酱园大师工作室", "kind": "studio" },
+    { "org_id": "org:jincheng", "name": "金城技师学院", "kind": "school" },
+    { "org_id": "shop:ruiyun", "name": "瑞云银楼门店", "kind": "shop" },
+    { "org_id": "shop:dehe_store", "name": "德和门店", "kind": "shop" },
+    { "org_id": "district:center", "name": "街区文化产业服务中心", "kind": "district" }
+  ]
+}

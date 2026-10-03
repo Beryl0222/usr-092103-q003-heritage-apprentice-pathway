@@ -1,10 +1,15 @@
 {
   "name": "heritage-apprentice-pathway",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "领域事件基础校验",
+  "description": "老字号技艺传习履历后端：可核验的个人历程、传承人确认、门店工序授权与培训补助核验",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "start": "node server.js",
+    "scenario": "node examples/fixture.mjs"
   }
 }

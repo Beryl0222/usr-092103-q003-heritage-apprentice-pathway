@@ -1,38 +1,68 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "老字号技艺传习履历领域事件",
+  "description": "跨机构（大师工作室 / 技能学校 / 门店 / 街区文化产业服务中心 / 财政）交换记录的统一信封。观察性评语与数值成绩分轨记录；核心工序确认权属于具备资格的传承人；学校结业不自动授予门店工序授权。",
   "type": "object",
   "required": [
     "event_id",
     "event_type",
+    "policy_context",
     "aggregate_type",
     "aggregate_id",
     "occurred_at",
     "version",
-    "summary"
+    "summary",
+    "payload"
   ],
   "properties": {
     "event_id": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "全局唯一、可引用的事件标识（建议机构前缀+日期+序号）。"
     },
     "event_type": {
       "type": "string",
+      "description": "稳定事件类型，取值见 x-enum-event-types。",
       "enum": [
-        "APPRENTICESHIP_STARTED",
+        "ENROLLMENT_ELIGIBILITY_DECIDED",
+        "ENROLLMENT_CONFIRMED",
+        "MENTORSHIP_LINKED",
+        "MENTORSHIP_ENDED",
+        "COURSE_REVISION_PUBLISHED",
         "PRACTICE_RECORDED",
+        "WORK_BATCH_SUBMITTED",
+        "MASTER_COMMENT_ISSUED",
+        "SAFETY_EXAM_PASSED",
         "ASSESSMENT_SIGNED",
         "AUTHORIZATION_GRANTED",
-        "PLACEMENT_VERIFIED"
+        "AUTHORIZATION_REVOKED",
+        "TRIAL_ARRANGED",
+        "TRIAL_EVALUATED",
+        "PLACEMENT_VERIFIED",
+        "SUBSIDY_DISBURSED",
+        "CONTACT_POLICY_ACKNOWLEDGED",
+        "STAGE_CERTIFICATE_ISSUED",
+        "RELATIONSHIP_SUPERSEDED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
+        "person",
         "apprenticeship",
+        "mentorship",
         "course_revision",
         "practice_evidence",
-        "work_authorization"
+        "work_batch",
+        "master_comment",
+        "safety_exam",
+        "skill_assessment",
+        "work_authorization",
+        "job_trial",
+        "placement",
+        "subsidy",
+        "consent",
+        "stage_certificate"
       ]
     },
     "aggregate_id": {
@@ -41,15 +71,386 @@
     },
     "occurred_at": {
       "type": "string",
-      "format": "date-time"
+      "format": "date-time",
+      "description": "业务事实发生时间。"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "事件追加到履历的服务时间（由服务端统一打戳，不依赖请求方时钟）。"
     },
     "version": {
       "type": "integer",
-      "minimum": 1
+      "minimum": 1,
+      "description": "同一聚合内单调递增的版本号。"
     },
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "reference_ids": {
+      "type": "array",
+      "description": "对其他记录的稳定引用。跨工作室、换课程、师傅退出后，旧履历仍可被引用。",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "supersedes_id": {
+      "type": "string",
+      "description": "当本关系/版本替代另一条记录时填写；被替代记录不删除、仍可引用。"
+    },
+    "policy_context": {
+      "type": "object",
+      "description": "权限与数据最小化标记，决定记录对谁可见。",
+      "required": [
+        "sensitivity",
+        "visibility"
+      ],
+      "properties": {
+        "sensitivity": {
+          "type": "string",
+          "enum": [
+            "standard",
+            "standard_with_contact",
+            "protected_work"
+          ]
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "public_verifiable",
+            "restricted"
+          ]
+        },
+        "contact_fields": {
+          "type": "array",
+          "description": "sensitivity=standard_with_contact 时受保护的联系方式字段名。",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowed_party_ids": {
+          "type": "array",
+          "description": "visibility=restricted 时允许查看的机构/人员标识；为空表示仅本人与主管单位。",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "payload": {
+      "type": "object",
+      "description": "业务数据，必需键与取值范围由事件类型约定（见 README 与 src/vocabulary.js 的 PAYLOAD_SHAPES）。",
+      "required": [
+        "actor_id",
+        "reason"
+      ],
+      "properties": {
+        "actor_id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "记录/确认人。核心工序确认须为具资格传承人（见 confirmed_by_inheritor_id）。"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "person_id": {
+          "type": "string"
+        },
+        "studio_id": {
+          "type": "string"
+        },
+        "school_id": {
+          "type": "string"
+        },
+        "shop_id": {
+          "type": "string"
+        },
+        "mentor_id": {
+          "type": "string"
+        },
+        "course_revision_id": {
+          "type": "string"
+        },
+        "supersedes_course_revision_id": {
+          "type": "string",
+          "description": "课程版本修订时指向被替代的旧课程版本聚合；旧版本记录不删除、仍可引用。"
+        },
+        "modules": {
+          "type": "array",
+          "description": "课程版本包含的模块。",
+          "items": { "type": "string" }
+        },
+        "hours": {
+          "type": "number",
+          "minimum": 0,
+          "description": "现场练习/学习课时（学校侧的学时记录）。"
+        },
+        "allowed_party_ids": {
+          "type": "array",
+          "description": "同意开放联系方式的机构/人员标识。",
+          "items": { "type": "string" }
+        },
+        "revoked_step_ids": {
+          "type": "array",
+          "description": "授权收回涉及的步骤；缺省表示整道工序授权收回。",
+          "items": { "type": "string" }
+        },
+        "trial_step_ids": {
+          "type": "array",
+          "description": "岗位试用拟考察的步骤。",
+          "items": { "type": "string" }
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "eligible",
+            "not_eligible",
+            "confirmed",
+            "passed",
+            "failed",
+            "completed",
+            "granted",
+            "revoked",
+            "independent_ready",
+            "supervised_only",
+            "employed",
+            "not_employed",
+            "acknowledged"
+          ]
+        },
+        "craft_id": {
+          "type": "string",
+          "description": "传统工序（工种）标识，如 酱菜推技艺 / 金属雕錾。"
+        },
+        "step_ids": {
+          "type": "array",
+          "description": "工序中的具体步骤；标记为核心步骤的须由具资格传承人确认。",
+          "items": {
+            "type": "string"
+          }
+        },
+        "core_step_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "authorized_step_ids": {
+          "type": "array",
+          "description": "AUTHORIZATION_GRANTED 明确允许独立承担的步骤；未列入者不得独立上岗。",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confirmed_by_inheritor_id": {
+          "type": "string",
+          "description": "对核心步骤进行确认的具资格传承人标识。"
+        },
+        "inheritor_credential_id": {
+          "type": "string",
+          "description": "传承人资格凭证标识，须在有效期且覆盖对应工序。"
+        },
+        "batch_id": {
+          "type": "string"
+        },
+        "work_titles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "is_public": {
+          "type": "boolean",
+          "description": "作品批次是否公开；未公开作品仅向获准人员开放。"
+        },
+        "attribution": {
+          "type": "object",
+          "description": "师承署名：作品与练习中各方贡献，防止试岗作品散落後无法证明成长。",
+          "properties": {
+            "apprentice_contribution": {
+              "type": "string"
+            },
+            "mentor_contribution": {
+              "type": "string"
+            },
+            "under_supervision_of": {
+              "type": "string"
+            }
+          }
+        },
+        "observations": {
+          "type": "string",
+          "description": "叙述性观察（MASTER_COMMENT_ISSUED），不做跨记录统一化，禁止折算成分数。"
+        },
+        "scoring_forbidden_reason": {
+          "type": "string",
+          "description": "event_type=MASTER_COMMENT_ISSUED 时必填：说明为何只作观察性记录而不评分。"
+        },
+        "score": {
+          "type": "object",
+          "description": "仅用于可量化考核（安全考核、学校课程成绩）；师傅观察性评语禁止携带分数。",
+          "required": [
+            "score_kind",
+            "value",
+            "scale_max"
+          ],
+          "properties": {
+            "score_kind": {
+              "type": "string",
+              "enum": [
+                "safety_exam",
+                "course_grade"
+              ]
+            },
+            "value": {
+              "type": "number"
+            },
+            "scale_max": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "pass_threshold": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "contact": {
+          "type": "object",
+          "description": "联系方式，仅在 standard_with_contact 且经同意时向获准人员开放。",
+          "properties": {
+            "phone": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            }
+          }
+        },
+        "scope": {
+          "type": "string",
+          "description": "授权/考核适用范围，如 门店内独立操作 / 仅在监督下操作。"
+        },
+        "trial_result": {
+          "type": "string",
+          "enum": [
+            "independent_ready",
+            "supervised_only",
+            "not_passed"
+          ]
+        },
+        "employer_name": {
+          "type": "string"
+        },
+        "employment_status": {
+          "type": "string",
+          "enum": [
+            "employed",
+            "self_employed",
+            "continued_training",
+            "not_employed"
+          ]
+        },
+        "subsidy": {
+          "type": "object",
+          "description": "培训补助明细，须能对应到真实的学习、考核与就业记录。",
+          "required": [
+            "amount",
+            "currency",
+            "stage"
+          ],
+          "properties": {
+            "amount": {
+              "type": "number",
+              "minimum": 0
+            },
+            "currency": {
+              "type": "string",
+              "enum": [
+                "CNY"
+              ]
+            },
+            "stage": {
+              "type": "string",
+              "enum": [
+                "enrollment",
+                "training",
+                "assessment",
+                "employment"
+              ]
+            },
+            "evidence_event_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "certificate": {
+          "type": "object",
+          "description": "阶段证明导出参数与校验信息。",
+          "properties": {
+            "stage": {
+              "type": "string",
+              "enum": [
+                "enrollment",
+                "training",
+                "assessment",
+                "authorization",
+                "employment"
+              ]
+            },
+            "included_event_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "effective_from": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "effective_until": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "exit_reason": {
+          "type": "string",
+          "enum": [
+            "studio_transfer",
+            "course_adjustment",
+            "mentor_exit",
+            "completed",
+            "other"
+          ]
+        },
+        "new_aggregate_id": {
+          "type": "string",
+          "description": "RELATIONSHIP_SUPERSEDED 指向的新生效关系；旧关系保持可引用。"
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "description": "事件追加时对规范化内容的签名/指纹信息（由服务端生成）。",
+      "properties": {
+        "prev_hash": {
+          "type": "string"
+        },
+        "event_hash": {
+          "type": "string"
+        },
+        "signer_key_id": {
+          "type": "string"
+        }
+      }
     }
   },
   "additionalProperties": true

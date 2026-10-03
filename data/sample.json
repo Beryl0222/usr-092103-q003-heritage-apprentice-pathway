@@ -1,9 +1,20 @@
 {
   "event_id": "092103-003-sample-001",
-  "event_type": "APPRENTICESHIP_STARTED",
+  "event_type": "ENROLLMENT_ELIGIBILITY_DECIDED",
   "aggregate_type": "apprenticeship",
   "aggregate_id": "heritage_apprentice_pathway-001",
   "occurred_at": "2026-09-20T16:00:00+08:00",
   "version": 1,
-  "summary": "老字号技艺传习履历联调样例"
+  "summary": "老字号技艺传习履历联调样例：报名资格审核",
+  "policy_context": {
+    "sensitivity": "standard",
+    "visibility": "restricted"
+  },
+  "payload": {
+    "actor_id": "official:fang",
+    "reason": "联调最小样例",
+    "person_id": "p:linxia",
+    "decision": "eligible",
+    "craft_id": "metal_repousse"
+  }
 }

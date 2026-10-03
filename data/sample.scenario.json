@@ -1,0 +1,729 @@
+[
+  {
+    "event_id": "demo-consent-001",
+    "event_type": "CONTACT_POLICY_ACKNOWLEDGED",
+    "aggregate_type": "consent",
+    "aggregate_id": "consent:linxia",
+    "occurred_at": "2026-09-01T09:00:00+08:00",
+    "version": 1,
+    "summary": "林夏确认联系方式披露范围",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "payload": {
+      "actor_id": "p:linxia",
+      "reason": "联合招生报名时签署联系方式仅向培养与录用机构开放的告知",
+      "person_id": "p:linxia",
+      "decision": "acknowledged",
+      "effective_from": "2026-09-01T09:00:00+08:00",
+      "allowed_party_ids": [
+        "studio:duyun",
+        "org:jincheng",
+        "shop:ruiyun"
+      ]
+    },
+    "recorded_at": "2026-10-03T19:40:07.663Z",
+    "signature": {
+      "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "event_hash": "9712c2ab33bb7efcbe213037af723801bf490a07660205a38209da818258973e"
+    }
+  },
+  {
+    "event_id": "demo-eligibility-001",
+    "event_type": "ENROLLMENT_ELIGIBILITY_DECIDED",
+    "aggregate_type": "apprenticeship",
+    "aggregate_id": "apprenticeship:linxia",
+    "occurred_at": "2026-09-02T10:00:00+08:00",
+    "version": 1,
+    "summary": "联合招生报名资格审核：合格",
+    "policy_context": {
+      "sensitivity": "standard_with_contact",
+      "visibility": "restricted",
+      "contact_fields": [
+        "phone",
+        "address"
+      ],
+      "allowed_party_ids": [
+        "studio:duyun",
+        "org:jincheng",
+        "shop:ruiyun"
+      ]
+    },
+    "payload": {
+      "actor_id": "official:fang",
+      "reason": "户籍、年龄与培养意向材料齐备",
+      "person_id": "p:linxia",
+      "decision": "eligible",
+      "studio_id": "studio:duyun",
+      "school_id": "org:jincheng",
+      "craft_id": "metal_repousse",
+      "contact": {
+        "phone": "138-0000-2026",
+        "address": "街区青年公寓 3 号 201"
+      }
+    },
+    "recorded_at": "2026-10-03T19:40:07.664Z",
+    "signature": {
+      "prev_hash": "9712c2ab33bb7efcbe213037af723801bf490a07660205a38209da818258973e",
+      "event_hash": "0cfa01cadc90601cbda4d3c3502720631ca13a70af7b989d88407c00fb381fb2"
+    }
+  },
+  {
+    "event_id": "demo-enrollment-001",
+    "event_type": "ENROLLMENT_CONFIRMED",
+    "aggregate_type": "apprenticeship",
+    "aggregate_id": "apprenticeship:linxia",
+    "occurred_at": "2026-09-03T14:00:00+08:00",
+    "version": 2,
+    "summary": "林夏确认入读金属雕錾联合培养班",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-eligibility-001"
+    ],
+    "payload": {
+      "actor_id": "official:fang",
+      "reason": "资格合格且本人确认入学",
+      "person_id": "p:linxia",
+      "decision": "confirmed",
+      "studio_id": "studio:duyun",
+      "school_id": "org:jincheng",
+      "craft_id": "metal_repousse",
+      "effective_from": "2026-09-05T08:30:00+08:00"
+    },
+    "recorded_at": "2026-10-03T19:40:07.664Z",
+    "signature": {
+      "prev_hash": "0cfa01cadc90601cbda4d3c3502720631ca13a70af7b989d88407c00fb381fb2",
+      "event_hash": "ad87512c998040850780f7a15cc6ce3195367a06520cd1454e234406598fe055"
+    }
+  },
+  {
+    "event_id": "demo-mentor-link-zhao",
+    "event_type": "MENTORSHIP_LINKED",
+    "aggregate_type": "mentorship",
+    "aggregate_id": "mentorship:linxia:zhao",
+    "occurred_at": "2026-09-05T08:30:00+08:00",
+    "version": 1,
+    "summary": "确立师徒关系：赵丽带练林夏",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-enrollment-001"
+    ],
+    "payload": {
+      "actor_id": "studio:duyun",
+      "reason": "工作室安排在带师傅负责日常手把式练习",
+      "person_id": "p:linxia",
+      "mentor_id": "m:zhaoli",
+      "studio_id": "studio:duyun",
+      "craft_id": "metal_repousse",
+      "effective_from": "2026-09-05T08:30:00+08:00"
+    },
+    "recorded_at": "2026-10-03T19:40:07.664Z",
+    "signature": {
+      "prev_hash": "ad87512c998040850780f7a15cc6ce3195367a06520cd1454e234406598fe055",
+      "event_hash": "9a6ab7d0868496eaff0aec6148cbf7cafab8bb3eae630dbe78c9380a2e967740"
+    }
+  },
+  {
+    "event_id": "demo-course-v1",
+    "event_type": "COURSE_REVISION_PUBLISHED",
+    "aggregate_type": "course_revision",
+    "aggregate_id": "course:jincheng:metal:v2026",
+    "occurred_at": "2026-09-06T09:00:00+08:00",
+    "version": 1,
+    "summary": "金城技师学院发布金属雕錾课程 2026 版",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "public_verifiable"
+    },
+    "payload": {
+      "actor_id": "org:jincheng",
+      "reason": "年度课程修订，新增安全操作模块",
+      "school_id": "org:jincheng",
+      "craft_id": "metal_repousse",
+      "effective_from": "2026-09-08T08:00:00+08:00",
+      "modules": [
+        "安全基础",
+        "退火热处理",
+        "锤揲成型",
+        "雕錾走线",
+        "压光收尾"
+      ]
+    },
+    "recorded_at": "2026-10-03T19:40:07.665Z",
+    "signature": {
+      "prev_hash": "9a6ab7d0868496eaff0aec6148cbf7cafab8bb3eae630dbe78c9380a2e967740",
+      "event_hash": "93e98f953ea8b8425255721110f988444cbaa722985b6a22af31e01172e67a9a"
+    }
+  },
+  {
+    "event_id": "demo-practice-chase",
+    "event_type": "PRACTICE_RECORDED",
+    "aggregate_type": "practice_evidence",
+    "aggregate_id": "practice:linxia:0920",
+    "occurred_at": "2026-09-20T16:00:00+08:00",
+    "version": 1,
+    "summary": "现场练习：退火、锤揲并在师傅监督下练习雕錾走线",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-mentor-link-zhao",
+      "demo-course-v1"
+    ],
+    "payload": {
+      "actor_id": "m:zhaoli",
+      "reason": "记录当日手上功夫练习与工时",
+      "person_id": "p:linxia",
+      "craft_id": "metal_repousse",
+      "step_ids": [
+        "mr:anneal",
+        "mr:hammer",
+        "mr:chase"
+      ],
+      "core_step_ids": [
+        "mr:chase"
+      ],
+      "confirmed_by_inheritor_id": "m:chenbaoshan",
+      "inheritor_credential_id": "cred:chen_001",
+      "course_revision_id": "course:jincheng:metal:v2026",
+      "mentor_id": "m:zhaoli",
+      "hours": 6,
+      "attribution": {
+        "apprentice_contribution": "独立完成退火与锤揲，雕錾在监督下行錾",
+        "mentor_contribution": "握錾姿态校正与走线示范",
+        "under_supervision_of": "m:zhaoli"
+      }
+    },
+    "recorded_at": "2026-10-03T19:40:07.665Z",
+    "signature": {
+      "prev_hash": "93e98f953ea8b8425255721110f988444cbaa722985b6a22af31e01172e67a9a",
+      "event_hash": "b4ac8ed4f8772ca8950ae43ee68460a7cc08a0ded4c860e717362fd073b62a04"
+    }
+  },
+  {
+    "event_id": "demo-batch-001",
+    "event_type": "WORK_BATCH_SUBMITTED",
+    "aggregate_type": "work_batch",
+    "aggregate_id": "batch:linxia:001",
+    "occurred_at": "2026-09-22T17:30:00+08:00",
+    "version": 1,
+    "summary": "提交试岗作品批次（未公开）",
+    "policy_context": {
+      "sensitivity": "protected_work",
+      "visibility": "restricted",
+      "allowed_party_ids": [
+        "studio:duyun",
+        "shop:ruiyun"
+      ]
+    },
+    "reference_ids": [
+      "demo-practice-chase"
+    ],
+    "payload": {
+      "actor_id": "p:linxia",
+      "reason": "门店试岗前提交作品，要求作品细节仅向工作室与门店开放",
+      "person_id": "p:linxia",
+      "craft_id": "metal_repousse",
+      "batch_id": "batch:linxia:001",
+      "is_public": false,
+      "work_titles": [
+        "缠枝纹银片试作"
+      ],
+      "step_ids": [
+        "mr:hammer",
+        "mr:chase"
+      ],
+      "core_step_ids": [
+        "mr:chase"
+      ],
+      "confirmed_by_inheritor_id": "m:chenbaoshan",
+      "inheritor_credential_id": "cred:chen_001",
+      "mentor_id": "m:zhaoli",
+      "attribution": {
+        "apprentice_contribution": "纹样主体锤揲与雕錾",
+        "mentor_contribution": "图样审定",
+        "under_supervision_of": "m:zhaoli"
+      }
+    },
+    "recorded_at": "2026-10-03T19:40:07.665Z",
+    "signature": {
+      "prev_hash": "b4ac8ed4f8772ca8950ae43ee68460a7cc08a0ded4c860e717362fd073b62a04",
+      "event_hash": "5e06810680632c2791f0a4f0035f4976c2aa02b15cbc8e88522a9255f5d090a1"
+    }
+  },
+  {
+    "event_id": "demo-comment-001",
+    "event_type": "MASTER_COMMENT_ISSUED",
+    "aggregate_type": "master_comment",
+    "aggregate_id": "comment:linxia:001",
+    "occurred_at": "2026-09-23T11:00:00+08:00",
+    "version": 1,
+    "summary": "师傅对雕錾手感的阶段性观察",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-practice-chase",
+      "demo-batch-001"
+    ],
+    "payload": {
+      "actor_id": "m:chenbaoshan",
+      "reason": "核心步骤练习后由传承人留下带教观察",
+      "person_id": "p:linxia",
+      "mentor_id": "m:zhaoli",
+      "craft_id": "metal_repousse",
+      "batch_id": "batch:linxia:001",
+      "observations": "下錾力度较月初明显收敛，长直线接头处仍偶有迟疑；银片退火火候判断尚需多上手，不宜以一次作品论定水平。",
+      "scoring_forbidden_reason": "手感、节奏与判断力属于长期观察，不宜折算为跨学员可比较的统一分数"
+    },
+    "recorded_at": "2026-10-03T19:40:07.665Z",
+    "signature": {
+      "prev_hash": "5e06810680632c2791f0a4f0035f4976c2aa02b15cbc8e88522a9255f5d090a1",
+      "event_hash": "58e55ef4746811d5842ed61f9e7876a5670e5e45c89e799971d8ca2e7ce6cd16"
+    }
+  },
+  {
+    "event_id": "demo-safety-001",
+    "event_type": "SAFETY_EXAM_PASSED",
+    "aggregate_type": "safety_exam",
+    "aggregate_id": "safety:linxia:metal",
+    "occurred_at": "2026-10-10T10:00:00+08:00",
+    "version": 1,
+    "summary": "金属雕錾安全操作考核通过",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "public_verifiable"
+    },
+    "payload": {
+      "actor_id": "org:jincheng",
+      "reason": "学校组织的安全规程与现场操作考核",
+      "person_id": "p:linxia",
+      "craft_id": "metal_repousse",
+      "school_id": "org:jincheng",
+      "decision": "passed",
+      "effective_from": "2026-10-10T10:00:00+08:00",
+      "score": {
+        "score_kind": "safety_exam",
+        "value": 92,
+        "scale_max": 100,
+        "pass_threshold": 60
+      }
+    },
+    "recorded_at": "2026-10-03T19:40:07.665Z",
+    "signature": {
+      "prev_hash": "58e55ef4746811d5842ed61f9e7876a5670e5e45c89e799971d8ca2e7ce6cd16",
+      "event_hash": "a7cf80bb7dbbc5cde963e5801f0ed307594f88b9bd30e32dcdda5c79cb87c3da"
+    }
+  },
+  {
+    "event_id": "demo-assessment-001",
+    "event_type": "ASSESSMENT_SIGNED",
+    "aggregate_type": "skill_assessment",
+    "aggregate_id": "assessment:linxia:metal",
+    "occurred_at": "2026-10-12T15:00:00+08:00",
+    "version": 1,
+    "summary": "传承人陈宝善签署结业考核，确认核心步骤达成",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "public_verifiable"
+    },
+    "reference_ids": [
+      "demo-practice-chase",
+      "demo-safety-001"
+    ],
+    "payload": {
+      "actor_id": "m:chenbaoshan",
+      "reason": "结业技能考核，核心步骤由具资格传承人当面确认",
+      "person_id": "p:linxia",
+      "craft_id": "metal_repousse",
+      "decision": "completed",
+      "step_ids": [
+        "mr:anneal",
+        "mr:hammer"
+      ],
+      "core_step_ids": [
+        "mr:chase"
+      ],
+      "confirmed_by_inheritor_id": "m:chenbaoshan",
+      "inheritor_credential_id": "cred:chen_001",
+      "course_revision_id": "course:jincheng:metal:v2026",
+      "effective_from": "2026-10-12T15:00:00+08:00",
+      "score": {
+        "score_kind": "course_grade",
+        "value": 88,
+        "scale_max": 100
+      }
+    },
+    "recorded_at": "2026-10-03T19:40:07.666Z",
+    "signature": {
+      "prev_hash": "a7cf80bb7dbbc5cde963e5801f0ed307594f88b9bd30e32dcdda5c79cb87c3da",
+      "event_hash": "4ec82ffb018ae17368dd87740ea83ae689f13baa98491ff39c6a36429bc29123"
+    }
+  },
+  {
+    "event_id": "demo-authz-001",
+    "event_type": "AUTHORIZATION_GRANTED",
+    "aggregate_type": "work_authorization",
+    "aggregate_id": "authz:linxia:metal",
+    "occurred_at": "2026-10-13T09:30:00+08:00",
+    "version": 1,
+    "summary": "门店授权林夏可独立承担雕錾走线与锤揲成型",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "public_verifiable"
+    },
+    "reference_ids": [
+      "demo-assessment-001",
+      "demo-safety-001"
+    ],
+    "payload": {
+      "actor_id": "m:chenbaoshan",
+      "reason": "安全考核通过、传承人确认核心步骤，门店准予相应步骤独立上岗",
+      "person_id": "p:linxia",
+      "craft_id": "metal_repousse",
+      "decision": "granted",
+      "authorized_step_ids": [
+        "mr:chase",
+        "mr:hammer"
+      ],
+      "scope": "独立上岗",
+      "confirmed_by_inheritor_id": "m:chenbaoshan",
+      "inheritor_credential_id": "cred:chen_001",
+      "effective_from": "2026-10-13T09:30:00+08:00"
+    },
+    "recorded_at": "2026-10-03T19:40:07.666Z",
+    "signature": {
+      "prev_hash": "4ec82ffb018ae17368dd87740ea83ae689f13baa98491ff39c6a36429bc29123",
+      "event_hash": "c8dc3f6d63aebf974bf2ee563a82755fda446c8131a723ada1b475b941df207d"
+    }
+  },
+  {
+    "event_id": "demo-trial-arranged",
+    "event_type": "TRIAL_ARRANGED",
+    "aggregate_type": "job_trial",
+    "aggregate_id": "trial:linxia:ruiyun",
+    "occurred_at": "2026-10-15T08:00:00+08:00",
+    "version": 1,
+    "summary": "瑞云银楼安排林夏岗位试用",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-authz-001",
+      "demo-batch-001"
+    ],
+    "payload": {
+      "actor_id": "shop:ruiyun",
+      "reason": "依据作品批次与授权安排两周跟岗试用",
+      "person_id": "p:linxia",
+      "shop_id": "shop:ruiyun",
+      "craft_id": "metal_repousse",
+      "effective_from": "2026-10-16T09:00:00+08:00",
+      "trial_step_ids": [
+        "mr:chase",
+        "mr:hammer"
+      ]
+    },
+    "recorded_at": "2026-10-03T19:40:07.666Z",
+    "signature": {
+      "prev_hash": "c8dc3f6d63aebf974bf2ee563a82755fda446c8131a723ada1b475b941df207d",
+      "event_hash": "43275e07b7846ab10308f520f9551d0030ba2013a606d57b9e31e7ac5644695a"
+    }
+  },
+  {
+    "event_id": "demo-trial-evaluated",
+    "event_type": "TRIAL_EVALUATED",
+    "aggregate_type": "job_trial",
+    "aggregate_id": "trial:linxia:ruiyun",
+    "occurred_at": "2026-10-30T17:00:00+08:00",
+    "version": 2,
+    "summary": "试用评定：可独立上岗",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-trial-arranged"
+    ],
+    "payload": {
+      "actor_id": "shop:ruiyun",
+      "reason": "试用期间独立完成授权步骤，质量稳定",
+      "person_id": "p:linxia",
+      "shop_id": "shop:ruiyun",
+      "craft_id": "metal_repousse",
+      "trial_result": "independent_ready",
+      "observations": "两周内独立承接三笔来料加工，未见安全问题"
+    },
+    "recorded_at": "2026-10-03T19:40:07.666Z",
+    "signature": {
+      "prev_hash": "43275e07b7846ab10308f520f9551d0030ba2013a606d57b9e31e7ac5644695a",
+      "event_hash": "6b4632d9a98bfa57a3e7463c6b3f82417b40868cc97c9a2e5e29f9767a95a8ce"
+    }
+  },
+  {
+    "event_id": "demo-placement-001",
+    "event_type": "PLACEMENT_VERIFIED",
+    "aggregate_type": "placement",
+    "aggregate_id": "placement:linxia",
+    "occurred_at": "2026-11-01T10:00:00+08:00",
+    "version": 1,
+    "summary": "就业核验：林夏入职瑞云银楼",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "public_verifiable"
+    },
+    "reference_ids": [
+      "demo-trial-evaluated"
+    ],
+    "payload": {
+      "actor_id": "official:fang",
+      "reason": "凭劳动合同与门店试用评定核验就业去向",
+      "person_id": "p:linxia",
+      "shop_id": "shop:ruiyun",
+      "craft_id": "metal_repousse",
+      "employment_status": "employed",
+      "employer_name": "瑞云银楼门店",
+      "effective_from": "2026-11-01T10:00:00+08:00"
+    },
+    "recorded_at": "2026-10-03T19:40:07.666Z",
+    "signature": {
+      "prev_hash": "6b4632d9a98bfa57a3e7463c6b3f82417b40868cc97c9a2e5e29f9767a95a8ce",
+      "event_hash": "7b2767620d53d143a0d7ffff5355feb0dd82de78254b40d2509b1200c44fcd82"
+    }
+  },
+  {
+    "event_id": "demo-subsidy-enroll",
+    "event_type": "SUBSIDY_DISBURSED",
+    "aggregate_type": "subsidy",
+    "aggregate_id": "subsidy:linxia:enrollment",
+    "occurred_at": "2026-09-04T10:00:00+08:00",
+    "version": 1,
+    "summary": "培训补助（enrollment 阶段）",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-enrollment-001"
+    ],
+    "payload": {
+      "actor_id": "official:fang",
+      "reason": "enrollment 阶段补助，凭对应记录拨付",
+      "person_id": "p:linxia",
+      "subsidy": {
+        "amount": 1000,
+        "currency": "CNY",
+        "stage": "enrollment",
+        "evidence_event_ids": [
+          "demo-enrollment-001"
+        ]
+      }
+    },
+    "recorded_at": "2026-10-03T19:40:07.666Z",
+    "signature": {
+      "prev_hash": "7b2767620d53d143a0d7ffff5355feb0dd82de78254b40d2509b1200c44fcd82",
+      "event_hash": "b8c3be13ce0e81ebf7dc21f6c67aefe87216805cfd8b35d878d0d0240d936edb"
+    }
+  },
+  {
+    "event_id": "demo-subsidy-train",
+    "event_type": "SUBSIDY_DISBURSED",
+    "aggregate_type": "subsidy",
+    "aggregate_id": "subsidy:linxia:training",
+    "occurred_at": "2026-10-08T10:00:00+08:00",
+    "version": 1,
+    "summary": "培训补助（training 阶段）",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-practice-chase"
+    ],
+    "payload": {
+      "actor_id": "official:fang",
+      "reason": "training 阶段补助，凭对应记录拨付",
+      "person_id": "p:linxia",
+      "subsidy": {
+        "amount": 2000,
+        "currency": "CNY",
+        "stage": "training",
+        "evidence_event_ids": [
+          "demo-practice-chase"
+        ]
+      }
+    },
+    "recorded_at": "2026-10-03T19:40:07.667Z",
+    "signature": {
+      "prev_hash": "b8c3be13ce0e81ebf7dc21f6c67aefe87216805cfd8b35d878d0d0240d936edb",
+      "event_hash": "1daa75fa9f1dd3eff0a64ccd7bc6b4d5f74692bd632357c2555b79f6d6a43dcb"
+    }
+  },
+  {
+    "event_id": "demo-subsidy-assess",
+    "event_type": "SUBSIDY_DISBURSED",
+    "aggregate_type": "subsidy",
+    "aggregate_id": "subsidy:linxia:assessment",
+    "occurred_at": "2026-10-13T10:00:00+08:00",
+    "version": 1,
+    "summary": "培训补助（assessment 阶段）",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-safety-001",
+      "demo-assessment-001"
+    ],
+    "payload": {
+      "actor_id": "official:fang",
+      "reason": "assessment 阶段补助，凭对应记录拨付",
+      "person_id": "p:linxia",
+      "subsidy": {
+        "amount": 1500,
+        "currency": "CNY",
+        "stage": "assessment",
+        "evidence_event_ids": [
+          "demo-safety-001",
+          "demo-assessment-001"
+        ]
+      }
+    },
+    "recorded_at": "2026-10-03T19:40:07.667Z",
+    "signature": {
+      "prev_hash": "1daa75fa9f1dd3eff0a64ccd7bc6b4d5f74692bd632357c2555b79f6d6a43dcb",
+      "event_hash": "17901d757e95eabb4fa4fa5e595f33cd5be10f8176cb3eb9714b28e17ad77243"
+    }
+  },
+  {
+    "event_id": "demo-subsidy-employ",
+    "event_type": "SUBSIDY_DISBURSED",
+    "aggregate_type": "subsidy",
+    "aggregate_id": "subsidy:linxia:employment",
+    "occurred_at": "2026-11-02T10:00:00+08:00",
+    "version": 1,
+    "summary": "培训补助（employment 阶段）",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-placement-001"
+    ],
+    "payload": {
+      "actor_id": "official:fang",
+      "reason": "employment 阶段补助，凭对应记录拨付",
+      "person_id": "p:linxia",
+      "subsidy": {
+        "amount": 3000,
+        "currency": "CNY",
+        "stage": "employment",
+        "evidence_event_ids": [
+          "demo-placement-001"
+        ]
+      }
+    },
+    "recorded_at": "2026-10-03T19:40:07.667Z",
+    "signature": {
+      "prev_hash": "17901d757e95eabb4fa4fa5e595f33cd5be10f8176cb3eb9714b28e17ad77243",
+      "event_hash": "15a68fa0b0e73b6a13f963014277f32117eb7f401002742e7d22b591da5b33ef"
+    }
+  },
+  {
+    "event_id": "demo-mentor-end-zhao",
+    "event_type": "MENTORSHIP_ENDED",
+    "aggregate_type": "mentorship",
+    "aggregate_id": "mentorship:linxia:zhao",
+    "occurred_at": "2026-11-03T09:00:00+08:00",
+    "version": 2,
+    "summary": "赵丽因个人原因退出带教",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-mentor-link-zhao"
+    ],
+    "payload": {
+      "actor_id": "studio:duyun",
+      "reason": "带教师傅退出，工作室安排传承人接续带教",
+      "exit_reason": "mentor_exit",
+      "effective_until": "2026-11-03T09:00:00+08:00",
+      "new_aggregate_id": "mentorship:linxia:chen"
+    },
+    "recorded_at": "2026-10-03T19:40:07.667Z",
+    "signature": {
+      "prev_hash": "15a68fa0b0e73b6a13f963014277f32117eb7f401002742e7d22b591da5b33ef",
+      "event_hash": "0601e368cab78ce592f3e60ee69f75a9180b067847213945cf9314569673cd2b"
+    }
+  },
+  {
+    "event_id": "demo-relationship-supersede",
+    "event_type": "RELATIONSHIP_SUPERSEDED",
+    "aggregate_type": "apprenticeship",
+    "aggregate_id": "apprenticeship:linxia",
+    "occurred_at": "2026-11-03T09:05:00+08:00",
+    "version": 3,
+    "summary": "师徒关系更替：旧关系履历保持可引用，新关系另行生效",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-mentor-link-zhao",
+      "demo-mentor-end-zhao"
+    ],
+    "payload": {
+      "actor_id": "studio:duyun",
+      "reason": "师傅退出，新生效关系另行记录，原有练习/作品/评语仍归属于旧关系并可引用",
+      "exit_reason": "mentor_exit",
+      "new_aggregate_id": "mentorship:linxia:chen",
+      "effective_from": "2026-11-03T09:05:00+08:00"
+    },
+    "recorded_at": "2026-10-03T19:40:07.667Z",
+    "signature": {
+      "prev_hash": "0601e368cab78ce592f3e60ee69f75a9180b067847213945cf9314569673cd2b",
+      "event_hash": "106e4dd64b81a5f7d1f7d95e6f4540adaca4fe3b36f223cf9ac594ceaf1c76e1"
+    }
+  },
+  {
+    "event_id": "demo-mentor-link-chen",
+    "event_type": "MENTORSHIP_LINKED",
+    "aggregate_type": "mentorship",
+    "aggregate_id": "mentorship:linxia:chen",
+    "occurred_at": "2026-11-03T09:10:00+08:00",
+    "version": 1,
+    "summary": "确立新生效师徒关系：陈宝善接续带教",
+    "policy_context": {
+      "sensitivity": "standard",
+      "visibility": "restricted"
+    },
+    "reference_ids": [
+      "demo-relationship-supersede"
+    ],
+    "payload": {
+      "actor_id": "studio:duyun",
+      "reason": "由具资格传承人接续带教，旧练习与作品批次继续有效",
+      "person_id": "p:linxia",
+      "mentor_id": "m:chenbaoshan",
+      "studio_id": "studio:duyun",
+      "craft_id": "metal_repousse",
+      "effective_from": "2026-11-03T09:10:00+08:00"
+    },
+    "recorded_at": "2026-10-03T19:40:07.667Z",
+    "signature": {
+      "prev_hash": "106e4dd64b81a5f7d1f7d95e6f4540adaca4fe3b36f223cf9ac594ceaf1c76e1",
+      "event_hash": "958d23b84af08e1ce66a40a618a03752f631f392010b5e7c8c2d979208de1bb3"
+    }
+  }
+]
